@@ -1,0 +1,10 @@
+<template>
+  <require from="app/nav-bar"></require>
+  <require from="notifications/notification-manager"></require>
+
+  <nav-bar router.bind="router"></nav-bar>
+  <div class="container">
+    <notification-manager></notification-manager>
+    <router-view></router-view>
+  </div>
+</template>

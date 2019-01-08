@@ -1,0 +1,6 @@
+node_modules
+out
+data
+src/styles.css
+.DS_Store
+.vscode

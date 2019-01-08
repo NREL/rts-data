@@ -1,0 +1,133 @@
+<template>
+  <require from="../templates/counter-level.html"></require>
+  <section class="section au-animate">
+    <h1 class="title">${heading}</h1>
+
+    <div class="columns">
+
+      <div class="column">
+        <counter-level>
+          <span slot="label">Messages Received</span>
+          <span slot="counter">${captureClient.messagesReceived}</span>
+        </counter-level>
+        <counter-level>
+          <span slot="label">Bytes Received</span>
+          <span slot="counter">${captureClient.bytesReceived}</span>
+        </counter-level>
+
+        <!-- <a if.one-way="captureClient.isListening" class="button is-medium is-text is-loading"></a> -->
+
+        <div class="field">
+          <input id="captureClientToggle" type="checkbox" name="switchRoundedOutlinedDefault" class="switch is-rounded is-medium" checked.one-way="captureClient.isListening" change.trigger="toggleCaputreClient()">
+          <label for="captureClientToggle" class="is-unselectable">UDP Capture</label>
+        </div>
+
+      </div>
+
+      <div class="is-divider-vertical"></div>
+
+      <div class="column">
+        <h4 class="title is-4">Configure</h4>
+        <h4 class="subtitle is-5">Network details of the device sending data</h4>
+
+        <div class="field">
+          <label class="label">Host</label>
+          <div class="control">
+            <input class="input" type="text" placeholder="127.0.0.1" value.bind="captureConfig.host" disabled.one-way="captureClient.isListening">
+          </div>
+          <p class="help">The host name or IP address of the device.</p>
+        </div>
+
+        <div class="field">
+          <label class="label">Port</label>
+          <div class="control">
+            <input class="input" type="text" placeholder="8080" value.bind="captureConfig.port" disabled.one-way="captureClient.isListening">
+          </div>
+          <p class="help">The port of the device.</p>
+        </div>
+
+        <div class="field">
+          <label class="label">Endianness</label>
+          <div class="control">
+            <div class="select">
+              <select value.bind="captureConfig.endianness">
+                <option value="big-endian">Big Endian</option>
+                <option value="little-endian">Little Endian</option>
+              </select>
+            </div>
+          </div>
+          <p class="help">Endianness of byte data received.</p>
+        </div>
+
+        <div class="field">
+          <div class="control">
+            <input type="checkbox" checked.bind="captureConfig.logging"> Logging</label>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+    <section class="section au-animate">
+      <h1 class="title">Test Data</h1>
+      <h2 class="subtitle">Send random data over UDP for test</h2>
+
+      <div class="columns">
+
+        <div class="column">
+          <counter-level>
+            <span slot="label">Messages Sent</span>
+            <span slot="counter">${captureServer.messagesSent}</span>
+          </counter-level>
+          <counter-level>
+            <span slot="label">Bytes Sent</span>
+            <span slot="counter">${captureServer.bytesSent}</span>
+          </counter-level>
+
+          <div class="field">
+            <input id="captureServerToggle" type="checkbox" name="switchRoundedOutlinedDefault" class="switch is-rounded is-medium" checked.one-way="captureServer.isEnabled" change.trigger="toggleCaputreServer()" disabled.bind="isNotLocalhost">
+            <label for="captureServerToggle" class="is-unselectable">Target Simulator</label>
+            <p class="help is-info" if.one-way="isNotLocalhost">RTS device host must be set to localhost.</p>
+          </div>
+
+        </div>
+
+        <div class="is-divider-vertical is-desktop"></div>
+
+        <div class="column">
+          <h4 class="title is-4">Configure Test</h4>
+
+          <label class="label">Frequency</label>
+          <div class="field has-addons">
+            <div class="control is-expanded">
+              <input class="input" type="text" placeholder="8080" value.bind="captureServer.frequency" disabled.one-way="captureServer.isEnabled || isNotLocalhost">
+            </div>
+            <div class="control">
+              <div class="select">
+                <select value.bind="captureServer.frequency_unit">
+                  <option value="s">s</option>
+                  <option value="m">ms</option>
+                  <option value="u">μs</option>
+                  <option value="n">ns</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <p class="help">The frequency UDP packet are sent from configured target host. Enter 0 to send messages as fast as possible.</p>
+
+          <br/>
+
+          <div class="field">
+            <label class="label">Message Size</label>
+            <div class="control">
+              <input class="slider is-fullwidth is-large is-circle has-output" step="4" min="0" max="512" value.bind="captureServer.messageSize" type="range" disabled.one-way="captureServer.isEnabled || isNotLocalhost">
+              <output>${captureServer.messageSize}</output>
+            </div>
+            <p class="help">The number of random bytes to send in the UDP body.</p>
+          </div>
+
+      </div>
+    </section>
+</template>

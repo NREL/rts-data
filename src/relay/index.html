@@ -1,0 +1,123 @@
+<template>
+  <require from="../templates/counter-level.html"></require>
+
+  <section class="section au-animate">
+      <h1 class="title">Publisher</h1>
+      <!-- <h2 class="subtitle"></h2> -->
+
+    <div class="columns">
+
+      <div class="column">
+        <div class="notification">
+          32-bit floating point numbers are expected over the relay
+        </div>
+
+        <counter-level>
+          <span slot="label">Messages Sent</span>
+          <span slot="counter">${relayPublisher.messagesSent}</span>
+        </counter-level>
+        <counter-level>
+          <span slot="label">Bytes Sent</span>
+          <span slot="counter">${relayPublisher.bytesSent}</span>
+        </counter-level>
+
+        <div class="field">
+          <input id="publisherToggle" type="checkbox" name="switchRoundedOutlinedDefault" class="switch is-rounded is-medium" checked.one-way="relayPublisher.isEnabled" change.trigger="togglePublisher()">
+          <label for="publisherToggle" class="is-unselectable">Publisher</label>
+        </div>
+
+      </div>
+
+      <div class="is-divider-vertical"></div>
+
+      <div class="column">
+        <h4 class="title is-4">Configure Relay</h4>
+        <h4 class="subtitle is-5">Network details of the ZMQ Relay</h4>
+
+        <div class="field">
+          <label class="label">Host</label>
+          <div class="control">
+            <input class="input" type="text" placeholder="127.0.0.1" value.bind="relayConfig.host">
+          </div>
+          <p class="help">The host name of the ZMQ broker.</p>
+        </div>
+
+        <div class="field">
+          <label class="label">Port</label>
+          <div class="control">
+            <input class="input" type="text" placeholder="5021" value.bind="relayConfig.publisherPort">
+          </div>
+          <p class="help">The port the publisher is to use.</p>
+        </div>
+
+        <div class="field">
+          <label class="label">Topic</label>
+          <div class="control">
+            <input class="input" type="text" placeholder="adms:use_case_1" value.bind="relayConfig.topic">
+          </div>
+          <p class="help">The name of the topic to use following the pattern "project-name:experiment-name", e.g. "adms:use_case_1".</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section au-animate">
+    <h1 class="title">Subscriber Test</h1>
+    <!-- <h2 class="subtitle"></h2> -->
+
+    <div class="columns">
+
+      <div class="column">
+        <counter-level>
+          <span slot="label">Messages Received</span>
+          <span slot="counter">${relaySubscriber.messagesReceived}</span>
+        </counter-level>
+        <counter-level>
+          <span slot="label">Bytes Received</span>
+          <span slot="counter">${relaySubscriber.bytesReceived}</span>
+        </counter-level>
+
+        <div class="field">
+          <input id="subscriberToggle" type="checkbox" name="switchRoundedOutlinedDefault" class="switch is-rounded is-medium" checked.one-way="relaySubscriber.isEnabled" change.trigger="toggleSubscriber()">
+          <label for="subscriberToggle" class="is-unselectable">Subscriber</label>
+        </div>
+
+      </div>
+
+      <div class="is-divider-vertical"></div>
+
+      <div class="column">
+        <h4 class="title is-4">Configure Test Subscriber</h4>
+        <h4 class="subtitle is-5">Network details of the ZMQ Relay</h4>
+
+        <p class="title is-6">Use same configuration as publisher.<p>
+
+        <div class="field">
+          <label class="label">Host</label>
+          <div class="control">
+            <input class="input" type="text" placeholder="127.0.0.1" value.bind="relayConfig.host">
+          </div>
+          <p class="help">The host name of the ZMQ broker.</p>
+        </div>
+
+        <div class="field">
+          <label class="label">Port</label>
+          <div class="control">
+            <input class="input" type="text" placeholder="5020" value.bind="relayConfig.subscriberPort">
+          </div>
+          <p class="help">The port the subscriber is to use.</p>
+        </div>
+
+        <div class="field">
+          <label class="label">Topic</label>
+          <div class="control">
+            <input class="input" type="text" placeholder="adms" value.bind="relayConfig.topic">
+          </div>
+          <p class="help">The name of the topic to use.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</template>

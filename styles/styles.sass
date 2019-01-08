@@ -1,0 +1,44 @@
+span.icon.is-large i.icon
+  font-size: 2em
+
+span.icon.is-medium i.icon
+  font-size: 1.33em
+
+.is-monospace
+  font-family: monospace
+
+@import '../node_modules/bulma/bulma.sass';
+@import '../node_modules/bulma-extensions/bulma-tooltip/tooltip.sass';
+@import '../node_modules/bulma-extensions/bulma-switch/switch.sass';
+@import '../node_modules/bulma-extensions/bulma-divider/divider.sass';
+@import '../node_modules/bulma-extensions/bulma-badge/badge.sass';
+@import '../node_modules/bulma-extensions/bulma-slider/slider.sass';
+
+@import '../node_modules/select2/dist/css/select2.min.css';
+@import 'bulma-select2.sass';
+
+.notifications
+  // /* position: absolute; */
+  display: block;
+  z-index: 1000;
+  position: fixed;
+  // top: 0px;
+  right: 0px;
+  // bottom: 0px;
+  // /* padding: 10px; */
+  // /* font-size: 1.2em; */
+  overflow-x: hidden;
+  overflow-y: auto;
+  // pointer-events: none;
+
+.has-a-manager
+  float: right;
+  clear: right;
+  position: relative;
+  width: 450px;
+  // /* padding-left: 30px; */
+  // margin: $notification-padding;
+  margin-bottom: 1.25rem;
+  // /* max-height: 800px; */
+  word-wrap: break-word;
+  // /* pointer-events: auto; */

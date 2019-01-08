@@ -1,0 +1,20 @@
+<template bindable="message, status">
+
+  <section class="section notifications">
+    <div repeat.for="notification of notifications" class="has-a-manager">
+      <!-- <div if.bind="!notification.description" class="notification is-${notification.status}">
+        <button class="delete" aria-label="delete" click.delegate="deleteNotification($index)"></button>
+        ${notification.message}
+      </div> -->
+      <article class="message is-${notification.status}">
+        <div class="message-header">
+          <p>${notification.message}</p>
+          <button class="delete" aria-label="delete" click.delegate="deleteNotification($index)"></button>
+        </div>
+        <div if.bind="notification.description" class="message-body">
+          ${notification.description}
+        </div>
+      </article>
+    </div>
+  </section>
+</template>

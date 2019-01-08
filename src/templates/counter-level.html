@@ -1,0 +1,23 @@
+<template>
+  <nav class="level">
+    <div class="level-left">
+      <div class="level-item">
+        <div>
+          <p class="heading">
+            <slot name="label"></slot>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="level-right">
+      <div class="level-item">
+        <div>
+          <p class="title is-monospace">
+            <slot name="counter"></slot>
+          </p>
+        </div>
+      </div>
+    </div>
+  </nav>
+</template>

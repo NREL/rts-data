@@ -1,0 +1,77 @@
+<template>
+  <require from="../templates/counter-level.html"></require>
+
+  <section class="section au-animate">
+    <h1 class="title">${heading}</h1>
+
+    <div class="columns">
+
+      <div class="column">
+        <h4 class="title is-4">Save Relay</h4>
+        <h4 class="subtitle is-5">Select a file to save target data</h4>
+
+        <div class="field">
+          <label class="label">File Name</label>
+          <div class="control">
+            <p>${fileSubscriber.fileName || 'No file selected'}</p>
+          </div>
+        </div>
+
+        <div class="field">
+          <div class="control">
+            <button class="button" click.delegate="directoryOpen()">Select file</button>
+          </div>
+        </div>
+
+        <counter-level>
+          <span slot="label">Messages Received</span>
+          <span slot="counter">${fileSubscriber.messagesReceived}</span>
+        </counter-level>
+        <counter-level>
+          <span slot="label">Bytes Received</span>
+          <span slot="counter">${fileSubscriber.bytesReceived}</span>
+        </counter-level>
+
+        <div class="field">
+          <input id="subscriberToggle" type="checkbox" name="switchRoundedOutlinedDefault" class="switch is-rounded is-medium" checked.one-way="fileSubscriber.isEnabled" change.trigger="toggleSubscriber()" disabled.bind="!fileSubscriber.fileName">
+          <label for="subscriberToggle" class="is-unselectable">File Writer</label>
+        </div>
+      </div>
+
+      <div class="is-divider-vertical"></div>
+
+      <div class="column">
+
+        <h4 class="title is-4">Configure</h4>
+        <h4 class="subtitle is-5">Network details of the ZMQ Relay</h4>
+
+        <p class="title is-6">Use same configuration as publisher.<p>
+
+        <div class="field">
+          <label class="label">Host</label>
+          <div class="control">
+            <input class="input" type="text" placeholder="127.0.0.1" value.bind="relayConfig.host" disabled>
+          </div>
+          <p class="help">The host name of the ZMQ broker.</p>
+        </div>
+
+        <div class="field">
+          <label class="label">Port</label>
+          <div class="control">
+            <input class="input" type="text" placeholder="5020" value.bind="relayConfig.subscriberPort" disabled>
+          </div>
+          <p class="help">The port the subscriber is to use.</p>
+        </div>
+
+        <div class="field">
+          <label class="label">Topic</label>
+          <div class="control">
+            <input class="input" type="text" placeholder="adms" value.bind="relayConfig.topic" disabled>
+          </div>
+          <p class="help">The name of the topic to use.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</template>

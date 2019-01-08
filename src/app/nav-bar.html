@@ -1,0 +1,35 @@
+<template>
+  <nav class="navbar is-fixed-top is-light" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="#/">
+        <span class="title is-3">RTS Data</span>
+      </a>
+
+      <div class="navbar-burger burger ${navMenuIsActive ? 'is-active' : ''}" data-target="navMenuTransparentExample" click.delegate="toggleNavMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+
+    <div class="navbar-menu ${navMenuIsActive ? 'is-active' : ''}" id="navMenu">
+      <div class="navbar-start">
+
+        <a repeat.for="row of router.navigation" class="navbar-item ${row.isActive ? 'is-active' : ''}" href.bind="row.href">
+          <span>
+            ${row.title}
+          </span>
+          <span class="icon ${row.settings.module.isActive ? 'has-text-danger tooltip is-tooltip-bottom' : 'has-text-success'}" data-tooltip="${row.settings.module.activeMessage}">
+            <i class="icon ion-${appConfig.iconFamily}-radio-button-${row.settings.module.isActive ? 'on' : 'off'}"></i>
+          </span>
+        </a>
+      </div>
+
+      <div class="navbar-end">
+        <div class="navbar-item">
+        </div>
+      </div>
+    </div>
+  </nav>
+
+</template>
