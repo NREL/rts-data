@@ -1,4 +1,4 @@
-# ADMS Testbed Desktop Application
+# Real Time Streaming (RTS) Data Application
 
 ## Build Requirements
 
